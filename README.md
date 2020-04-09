@@ -20,6 +20,14 @@ docker run --rm -it -v $(pwd):/data sqlfluff filename.sql
 docker run --rm -i sqlfluff - < filename.sql
 ```
 
+### Convenience alias
+
+```sh
+alias sqlfluff='docker run --rm -i -v$(pwd):/data sqlfluff'
+cat filename.sql | sqlfluff -
+sqlfluff filename.sql
+```
+
 ### Notes
 
 1.   the file(s) to lint are sent as options to the sqlfluff container
