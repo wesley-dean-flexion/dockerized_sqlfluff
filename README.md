@@ -47,16 +47,23 @@ docker run \
   | sed -Ee "s|/data/\.|$(pwd)|g"
 ```
 
-### Convenience alias
-
-```sh
-alias sqlfluff='docker run --rm -i -v$(pwd):/data sqlfluff'
-cat filename.sql | sqlfluff -
-sqlfluff filename.sql
-```
-
 ### Notes
 
 1.   the file(s) to lint are sent as options to the sqlfluff container
 2.   the container looks in `/data/` to find the file(s) provided
 3.   sqlfluff accepts `-` as a filename to read from STDIN (for piping)
+
+### Convenience alias
+
+For your convenience, you may include the following into your shell
+configuration file (e.g., `~/.bashrc`):
+
+```sh
+# this is the alias
+alias sqlfluff='docker run --rm -i -v$(pwd):/data sqlfluff'
+
+# here's how to use the alias
+cat filename.sql | sqlfluff -
+sqlfluff filename.sql
+```
+
