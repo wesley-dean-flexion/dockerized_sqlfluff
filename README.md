@@ -23,14 +23,15 @@ docker run --rm -i sqlfluff - < filename.sql
 ### Recursive scan of all SQL files
 
 ```
-find . \
-  -iname "*.sql" \
-  -exec docker run \
-    --rm \
-    --interactive \
-    --volume $(pwd):/data \
-    wesleydeanflexion/sqlfluff \
-    /data/{} \; \
+docker run \
+  --entrypoint '' \
+  --rm \
+  --interactive \
+  --volume $(pwd):/data \
+  wesleydeanflexion/sqlfluff \
+  find . \
+    -iname "*.sql" \
+    -exec sqlfluff lint {} \; \
   | sed -Ee "s|/data/\.|$(pwd)|g"
 ```
 
