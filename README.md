@@ -20,6 +20,20 @@ docker run --rm -it -v $(pwd):/data sqlfluff filename.sql
 docker run --rm -i sqlfluff - < filename.sql
 ```
 
+### Recursive scan of all SQL files
+
+```
+find . \
+  -iname "*.sql" \
+  -exec docker run \
+    --rm \
+    --interactive \
+    --volume $(pwd):/data \
+    wesleydeanflexion/sqlfluff \
+    /data/{} \; \
+  | sed -Ee "s|/data/\.|$(pwd)|g"
+```
+
 ### Convenience alias
 
 ```sh
