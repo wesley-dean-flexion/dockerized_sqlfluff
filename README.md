@@ -2,7 +2,8 @@
 
 This is a Dockerfile that allows the user to run a containerized version of
 [sqlfluff](https://pypi.org/project/sqlfluff/) by 
-[Alan Cruickshank](https://github.com/alanmcruickshank).
+[Alan Cruickshank](https://github.com/alanmcruickshank).  The image is
+rebuilt weekly thanks to [Travis CI](https://travis-ci.org/).
 
 ## To build
 
@@ -10,17 +11,28 @@ This is a Dockerfile that allows the user to run a containerized version of
 docker build -t sqlfluff .
 ```
 
+## To pull hosted image from Docker Hub
+
+```
+docker pull wesleydeanflexion/sqlfluff
+```
+
 ## To run
 
 ```sh
-# mount and lint a file
+# mount and lint a file with locally-built image
 docker run --rm -it -v $(pwd):/data sqlfluff filename.sql
 
-# pipe a file to test
-docker run --rm -i sqlfluff - < filename.sql
+# pipe a file to test with hosted image
+docker run --rm -i wesleydeanflexion/sqlfluff - < filename.sql
 ```
 
 ### Recursive scan of all SQL files
+
+This will start in the current directory and scan all `*.sql` files
+(case-insensitive) with the hosted sqlfluff image.  The `sed` statement
+will convert any container-specific paths back to paths meaningful
+to the host system.
 
 ```
 docker run \
