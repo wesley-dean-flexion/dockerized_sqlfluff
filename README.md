@@ -1,7 +1,7 @@
 # dockerized_sqlfluff
 
 This is a Dockerfile that allows the user to run a containerized version of
-[sqlfluff](https://pypi.org/project/sqlfluff/) by 
+[sqlfluff](https://pypi.org/project/sqlfluff/) by
 [Alan Cruickshank](https://github.com/alanmcruickshank).  The image is
 rebuilt weekly thanks to [Travis CI](https://travis-ci.org/).
 
@@ -66,4 +66,3 @@ alias sqlfluff='docker run --rm -i -v$(pwd):/data sqlfluff'
 cat filename.sql | sqlfluff -
 sqlfluff filename.sql
 ```
-

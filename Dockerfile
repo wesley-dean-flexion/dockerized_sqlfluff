@@ -8,11 +8,12 @@ ARG USERNAME=runner
 ARG GROUPNAME=runner
 
 # setup initial directories and add runner user as a non-privileged, system account
+# hadolint ignore=DL3013
 RUN mkdir -p ${WORKING_DIRECTORY} \
   && groupadd --system ${USERNAME} \
   && useradd --system --gid ${GROUPNAME} --home-dir ${WORKING_DIRECTORY} ${USERNAME} \
   && chown --recursive ${USERNAME}:${GROUPNAME} ${WORKING_DIRECTORY} \
-  && pip install sqlfluff 
+  && pip install --no-cache-dir sqlfluff
 
 # run as the non-privilged, system account
 USER ${USERNAME}
