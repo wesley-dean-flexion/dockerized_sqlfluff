@@ -35,6 +35,7 @@ pipeline {
 
     triggers {
         cron('@weekly')
+        pollSCM('@daily')
     }
 
     options {
