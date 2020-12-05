@@ -9,7 +9,7 @@ pipeline {
 
         string (
             name: 'repository_url',
-            defaultValue: 'https://github.com/wesley-dean/flexion/dockerized_sqlfluff.git',
+            defaultValue: 'https://github.com/wesley-dean-flexion/dockerized_sqlfluff.git',
             description: 'the URL to the Git repository'
         )
 
